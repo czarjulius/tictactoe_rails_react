@@ -1,5 +1,7 @@
 # README
 
+[![Build Status](https://travis-ci.com/czarjulius/tictactoe_rails_react.svg?branch=develop)](https://travis-ci.com/czarjulius/tictactoe_rails_react)
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
