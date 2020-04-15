@@ -1,4 +1,5 @@
 # README
+## TicTacToe
 
 [![Build Status](https://travis-ci.com/czarjulius/tictactoe_rails_react.svg?branch=develop)](https://travis-ci.com/czarjulius/tictactoe_rails_react)
 
