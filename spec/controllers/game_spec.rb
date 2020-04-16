@@ -8,3 +8,15 @@ RSpec.describe GameController, :type => :controller do
       end
     end
 end
+
+RSpec.describe "Game Controller", :type => :request do
+  context "opponent" do
+    it "creates an opponent" do
+      headers = { "ACCEPT" => "application/json" }
+      post "/opponent", :params => { :games => {:opponent => "computer"} }, :headers => headers
+
+      expect(response.content_type).to eq("application/json; charset=utf-8")
+      expect(response).to have_http_status(:created)
+    end
+  end
+end
