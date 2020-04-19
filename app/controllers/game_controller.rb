@@ -4,14 +4,26 @@ class GameController < ApplicationController
   def index
   end
 
-  def opponent
+  def new_game
     
-    @opponent = Game.new(opponent: params[:opponent])
-    @opponent.board = Array.new(9,"-")
+    @new_game = Game.new(game_params)
+    @new_game.board = Array.new(9,"-")
 
-    @opponent.save() 
+    if@new_game.valid?
+      @new_game.save() 
 
-    render json: {data: @opponent}, status: 201
+      render json: @new_game, status: 201
+    else
+      render json: @new_game.errors.details, status: 500
+
+    end
+
+
+  end
+
+  def game_params
+    params.require(:game).permit(:opponent, :current_player)
+    
   end
 
 end

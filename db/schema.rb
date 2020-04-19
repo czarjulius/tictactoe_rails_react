@@ -13,9 +13,9 @@
 ActiveRecord::Schema.define(version: 2020_04_16_181804) do
 
   create_table "games", force: :cascade do |t|
-    t.string "opponent", default: "human"
+    t.string "opponent"
     t.string "player", default: "x"
-    t.string "current_player", default: "player1"
+    t.string "current_player"
     t.string "board"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

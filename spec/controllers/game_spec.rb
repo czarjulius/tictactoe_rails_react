@@ -10,13 +10,20 @@ RSpec.describe GameController, :type => :controller do
 end
 
 RSpec.describe "Game Controller", :type => :request do
-  context "opponent" do
-    it "creates an opponent" do
+  context "new_game" do
+    it "creates a new_game" do
       headers = { "ACCEPT" => "application/json" }
-      post "/opponent", :params => { :games => {:opponent => "computer"} }, :headers => headers
+      post "/new_game", :params => { :game => {:opponent => "computer", :current_player => 'human'} }, :headers => headers
 
       expect(response.content_type).to eq("application/json; charset=utf-8")
       expect(response).to have_http_status(:created)
+    end
+    it "fails to creates a new_game" do
+      headers = { "ACCEPT" => "application/json" }
+      post "/new_game", :params => { :game => {:oppogdgdnent => "computer"} }, :headers => headers
+
+      expect(response.content_type).to eq("application/json; charset=utf-8")
+      expect(response.body).to include('error')
     end
   end
 end
