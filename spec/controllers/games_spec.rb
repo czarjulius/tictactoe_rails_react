@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe GameController, :type => :controller do
+RSpec.describe GamesController, :type => :controller do
     describe "GET index" do
       it "has a 200 status code" do
         get :index
