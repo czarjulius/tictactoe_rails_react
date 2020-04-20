@@ -1,10 +1,10 @@
-class GameController < ApplicationController
+class GamesController < ApplicationController
   protect_from_forgery with: :null_session
 
   def index
   end
 
-  def new_game
+  def create
     
     @new_game = Game.new(game_params)
     @new_game.board = Array.new(9,"-")
