@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/czarjulius/Gemfile_TicTacToe.git
+  revision: 9eea4abfae339a3b6180ef03ba24aae655c6d851
+  branch: master
+  specs:
+    game (1.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -203,6 +210,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
+  game!
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
   pg
@@ -213,7 +221,7 @@ DEPENDENCIES
   sass-rails (>= 6)
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3
+  sqlite3 (~> 1.4)
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 3.3.0)
