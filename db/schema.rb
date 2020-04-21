@@ -12,11 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2020_04_16_181804) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "games", force: :cascade do |t|
     t.string "opponent"
     t.string "player", default: "x"
     t.string "current_player"
-    t.string "board"
+    t.text "board", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
