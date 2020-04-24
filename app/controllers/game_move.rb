@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'moves_type'
 
 class GameMove

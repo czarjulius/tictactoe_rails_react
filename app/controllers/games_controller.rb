@@ -19,33 +19,19 @@ class GamesController < ApplicationController
     end
   end
 
-  def update
+  def play_game
     current_game = Game.find(params[:id])
-    payload = JSON.parse(request.body.read)
-    position = payload['position'].to_i
+    position = params[:position].to_i
 
-    board = current_game.board
-    player = current_game.player
-    opponent = current_game.opponent
-    current_player = current_game.current_player
+    game_output = UpdateGame.new.output(current_game, position)
 
-    toggle = TicTacToeGame::Toggle.new(player)
-    game = TicTacToeGame::Game.new(board, player, toggle)
+    render json: { message: game_output }, status: 200
 
-    GameMove.new.all_moves(game, opponent, current_player, position, current_game)
-
-    current_game.player = toggle.current_turn
-    current_game.board = game.board
-    if game.end?
-        finish_game = GameoverType.new.message(game)
-      return render json: { message: finish_game.game_over(current_player) }, status: 200
-    end
     current_game.save
-    render json: game.board, status: 200
   end
 
-
   private
+
   def game_params
     params.require(:game).permit(:opponent, :current_player)
   end

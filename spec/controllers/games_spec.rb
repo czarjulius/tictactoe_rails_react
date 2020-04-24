@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require_relative 'mock_game_move'
-require_relative 'mock_game'
 
 RSpec.describe GamesController, type: :controller do
   describe 'GET index' do
@@ -11,5 +9,4 @@ RSpec.describe GamesController, type: :controller do
       expect(response.status).to eq(200)
     end
   end
-
 end
