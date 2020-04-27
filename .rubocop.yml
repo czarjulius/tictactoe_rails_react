@@ -1,0 +1,18 @@
+
+Metrics/BlockLength:
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
+    - 'Gemfile'
+
+Metrics/ClassLength:
+  Exclude:
+    - 'Gemfile'
+
+Metrics/ModuleLength:
+  Exclude:
+    - 'spec/**/*.rb'
+    - 'Gemfile'
+    - 'bin/**/*'
+    - 'config/**/*'
