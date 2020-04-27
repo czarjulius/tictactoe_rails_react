@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
+import './game.css'
 
 class Game extends Component{
     render(){
         return(
-            <div className="container">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/React_Native_Logo.png" className="img-rounded" alt="React Logo"/>
-            </div>
+            <>
+                <div className='game_left'>
+                    <h1>Welcome To Tic Tac Toe Game</h1>
+                </div>
+                <div className='game_right'>
+                </div>
+            </>
         )
     }
 }
