@@ -1,7 +1,15 @@
+body {
+  margin-top: 40px;
+  color: #fff;
+  font-family: Helvetica;
+  font-weight: bold;
+  text-align:center;
+}
+
 .game_left {
     width: 50%;
     height: 100%;
-    background: rgba(242, 201, 76, 0.69);
+    background: #485b6e;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,20 +18,49 @@
   
   .game_right {
     width: 50%;
-    background-image: url(/assets/mentee.jpg);
     background-size: 100% 100%;
   }
-  
-  .game_tagline {
-    font-weight: 900;
-    font-size: 36px;
-    line-height: 42px;
-  }
-  
-  .game_subtitle {
-    margin-top: 56px;
-    font-weight: 900;
-    font-size: 24px;
-    color: #4F4F4F;
-  }
-  
+
+h1 {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #f1f1f1
+    
+}
+
+#game {
+    width: 302px;
+    height: 302px;
+    border: 1px solid #dadada;
+    margin: 0 auto;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+#game > li {
+    list-style: none;
+    float: left;
+    overflow: hidden;
+    text-decoration:none;
+    width: 100px;
+    height: 100px;
+    background: #f1f1f1;
+    border: 1px solid #ccc;
+    border-right: 1px solid #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 20px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#game > li:hover {
+    background: #f9f9f9;
+}
+
+#game > li:active {
+    width: 100px;
+    height: 100px;
+    border: 0;
+}

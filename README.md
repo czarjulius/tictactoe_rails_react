@@ -1,10 +1,8 @@
-# README
-## TicTacToe
+# TicTacToe
+
 [![CircleCI](https://circleci.com/gh/czarjulius/tictactoe_rails_react.svg?style=svg)](https://circleci.com/gh/czarjulius/tictactoe_rails_react)
 [![Build Status](https://travis-ci.com/czarjulius/tictactoe_rails_react.svg?branch=develop)](https://travis-ci.com/czarjulius/tictactoe_rails_react)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
 Things you may want to cover:
 
