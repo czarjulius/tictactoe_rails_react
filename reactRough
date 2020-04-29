@@ -180,3 +180,19 @@ h1 {
 #reset-game:hover {
         background: #2c3e52;
 }
+
+
+ onClickHandler = (id,positon) => {
+        
+        axios.patch(`http://localhost:3000/games/${id}/move/${positon}`)
+          .then(res => {
+            console.log(res,'ressssssssssss');
+            console.log(res.data,'dataaaaaaaaaaaaaaaaaa');
+
+            this.setState({
+                message: res.data.message
+              });
+          })
+      }
+
+                              {/* <button id="reset-game" onClick={() => this.onClickHandler()}>New Game</button> */}
