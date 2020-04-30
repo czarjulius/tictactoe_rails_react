@@ -88,3 +88,14 @@ h1 {
   font-size: 40px;
   color: #ed4e6e
 }
+
+#game-messages.player-x-win > span.player-x-win, 
+#game-messages.player-o-win > span.player-o-win,
+#game-messages.draw > span.draw {
+    display: block;
+    margin-top: 10px;
+}
+
+.disableCell{
+  pointer-events: none;
+}

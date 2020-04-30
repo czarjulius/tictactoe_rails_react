@@ -22,7 +22,7 @@ RSpec.describe 'Games Controller', type: :request do
     it 'should move to position 2 on the game board' do
       game = Game.create(opponent: 'human', current_player: 'player1', board: Array.new(9, '-'))
 
-      expected_result = { 'message'=>['-', '-', 'x', '-', '-', '-', '-', '-', '-']}
+      expected_result = { 'message'=>{'board'=>['-', '-', 'x', '-', '-', '-', '-', '-', '-']}}
       patch "/games/#{game.id}/move/2"
 
       expect(response.content_type).to eq('application/json; charset=utf-8')
@@ -33,7 +33,7 @@ RSpec.describe 'Games Controller', type: :request do
     it 'should output player1 as the winner' do
       game = Game.create(opponent: 'human', player: 'x', current_player: 'player1', board: ['-', '-', 'x', '-', '-', 'x', 'o', '-', 'x'])
 
-      expected_result = 'player1 won the game'
+      expected_result = {"board"=>["x", "-", "x", "-", "-", "x", "o", "-", "x"], "win"=>"player1 won the game"}
       patch "/games/#{game.id}/move/0"
 
       expect(response.content_type).to eq('application/json; charset=utf-8')
@@ -43,7 +43,7 @@ RSpec.describe 'Games Controller', type: :request do
     it 'should end the game in a tie' do
       game = Game.create(opponent: 'human', player: 'o', current_player: 'player1', board: ['o', 'x', 'o', 'x', 'o', 'x', 'x', '-', 'x'])
 
-      expected_result = 'The game ended in a tie'
+      expected_result = {"board"=>["o", "x", "o", "x", "o", "x", "x", "o", "x"], "draw"=>"The game ended in a tie"}
       patch "/games/#{game.id}/move/7"
 
       expect(response.content_type).to eq('application/json; charset=utf-8')
@@ -53,7 +53,7 @@ RSpec.describe 'Games Controller', type: :request do
     it 'should end the game in a win by computer' do
       game = Game.create(opponent: 'computer', player: 'x', current_player: 'computer', board: ['-', '-', 'x', '-', '-', 'x', 'o', '-', 'x'])
 
-      expected_result = 'computer won the game'
+      expected_result = {"board" => ["x", "-", "x", "-", "-", "x", "o", "-", "x"],"win" => "computer won the game"}
       patch "/games/#{game.id}/move/7"
 
       expect(response.content_type).to eq('application/json; charset=utf-8')
@@ -63,7 +63,7 @@ RSpec.describe 'Games Controller', type: :request do
     it 'should end the game in a win by human' do
       game = Game.create(opponent: 'computer', player: 'x', current_player: 'human', board: ['-', '-', 'x', '-', '-', 'x', 'o', '-', 'x'])
 
-      expected_result = 'human won the game'
+      expected_result = {"board" => ["-", "-", "x", "-", "-", "x", "o", "x", "x"],"win" => "human won the game"}
       patch "/games/#{game.id}/move/7"
 
       expect(response.content_type).to eq('application/json; charset=utf-8')
