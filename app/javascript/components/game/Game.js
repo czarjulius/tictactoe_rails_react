@@ -44,7 +44,7 @@ class Game extends Component{
               });
           })
       }
-      
+
     render(){
         const { message } = this.state
         return(

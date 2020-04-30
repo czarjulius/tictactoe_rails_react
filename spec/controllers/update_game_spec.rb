@@ -22,5 +22,12 @@ RSpec.describe 'UpdateGame' do
 
             UpdateGame.new.update(current_game, 2)
         end
+
+        it'should return toggle the player from x to player o' do
+            current_game = Game.create(opponent: 'human', current_player: 'player1', player: 'x', board: Array.new(9, '-'))
+            update_game = UpdateGame.new
+            update_game.update(current_game, 2)
+            expect(current_game.player).to eq('o')
+        end
     end
 end

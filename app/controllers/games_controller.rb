@@ -22,11 +22,8 @@ class GamesController < ApplicationController
   def play_game
     current_game = Game.find(params[:id])
     position = params[:position].to_i
-    p current_game.player
 
     game_output = UpdateGame.new.output(current_game, position)
-
-    p current_game.player
 
     render json: { message: game_output }, status: 200
 

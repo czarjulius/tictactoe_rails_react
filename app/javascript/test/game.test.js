@@ -28,9 +28,13 @@ describe('Game', () => {
 
     });
 
-    test('new game button to call submitHandler', () => {
-
+    test('that a button with a new game is preseent', () => {
       wrapper.find('button').simulate('submit');
+      expect(wrapper.find('button').text()).toBe('New Game');
+    });
+    
+    test('new game button to call submitHandler', () => {
+      wrapper.find('button').simulate('submit', { preventDefault () {} });
       expect(wrapper.find('button').text()).toBe('New Game');
     });
 
@@ -42,9 +46,15 @@ describe('Game', () => {
       return new Promise((resolve) => setImmediate(resolve)).then(() => {
         expect(wrapper.state('id')).toBe("1");
       })
-     
-
     });
-      
 
+    test('play game with a patch method will update the state with x move on position 8', () => {
+      mock.onPatch(`http://localhost:3000/games/${wrapper.state('id')}/move/8`).reply(200, {
+          message: `["-","-","-","-","-","-","-","-","x"]`
+      });
+      wrapper.find('li').at(8).simulate('click');
+      return new Promise((resolve) => setImmediate(resolve)).then(() => {
+        expect(wrapper.state('message')).toBe(`["-","-","-","-","-","-","-","-","x"]`);
+      })
+    });
 });
