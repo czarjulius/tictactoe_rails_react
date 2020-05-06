@@ -7,7 +7,7 @@ RSpec.describe 'UpdateGame' do
     context'output' do
         it'should return a board with x in position 2' do
             current_game = Game.create(opponent: 'human', current_player: 'player1', board: Array.new(9, '-'))
-            expected_result = ['-', '-', 'x', '-', '-', '-', '-', '-', '-']
+            expected_result = {board:['-', '-', 'x', '-', '-', '-', '-', '-', '-']}
             update_game = UpdateGame.new
             expect(update_game.output(current_game, 2)).to eq(expected_result)
         end
@@ -21,6 +21,13 @@ RSpec.describe 'UpdateGame' do
             expect_any_instance_of(GameMove).to receive(:all_moves).with(game, 'human', 'player1', 2, current_game)
 
             UpdateGame.new.update(current_game, 2)
+        end
+
+        it'should return toggle the player from x to player o' do
+            current_game = Game.create(opponent: 'human', current_player: 'player1', player: 'x', board: Array.new(9, '-'))
+            update_game = UpdateGame.new
+            update_game.update(current_game, 2)
+            expect(current_game.player).to eq('o')
         end
     end
 end
