@@ -9,9 +9,9 @@
       toggle = TicTacToeGame::Toggle.new(player)
       @game = TicTacToeGame::Game.new(board, player, toggle)
   
-      GameMove.new.all_moves(@game, opponent, @current_player, position, current_game)
       current_game.player = toggle.current_turn
       current_game.board = @game.board
+      GameMove.new.all_moves(@game, opponent, @current_player, position, current_game)
     end
     
     def output(current_game, position)

@@ -28,7 +28,6 @@ class GamesController < ApplicationController
     render json: { message: game_output }, status: 200
 
     current_game.save
-
   end
 
   private
