@@ -42,11 +42,14 @@ class GameForm extends Component{
                         <option value="human">Human</option>
                     </select>
                 </div>
-                <input type="text" required 
-                    onChange={this.onInputChange} 
-                    name="current_player" 
-                    className="form-control mb-2 mr-sm-2" 
-                    placeholder="First Player" />                
+                <div className="input-group mb-2 mr-sm-2">
+                  <input type="text" required 
+                      onChange={this.onInputChange} 
+                      name="current_player" 
+                      className="form-control mb-2 mr-sm-2" 
+                      placeholder="First Player" />    
+                </div>
+            
                 <button href="#" type="submit" id="reset-game">New Game</button>
             </form>
 

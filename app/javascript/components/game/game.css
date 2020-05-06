@@ -4,22 +4,22 @@ body {
   font-family: Helvetica;
   font-weight: bold;
   text-align:center;
+  background-color: rgb(17, 17, 20);
 }
 
-.game_left {
+/* .game_left {
     width: 50%;
     height: 100%;
-    background: #485b6e;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
+  } */
   
-  .game_right {
+  /* .game_right {
     width: 50%;
     background-size: 100% 100%;
-  }
+  } */
 
 h1 {
     text-transform: uppercase;
@@ -89,11 +89,11 @@ h1 {
   color: #ed4e6e
 }
 
-#game-messages.player-x-win > span.player-x-win, 
-#game-messages.player-o-win > span.player-o-win,
-#game-messages.draw > span.draw {
+.game-over {
     display: block;
     margin-top: 10px;
+    text-transform: uppercase;
+    color: rgb(121, 241, 8);
 }
 
 .disableCell{

@@ -1,6 +1,6 @@
 import React from 'react';
 import {  mount } from 'enzyme';
-import GameForm from '../components/GameForm';
+import GameForm from '../components/gameForm';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
