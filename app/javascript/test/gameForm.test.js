@@ -17,17 +17,12 @@ describe('Test gameForm component', () => {
             id: "1",
         });
 
-        let addGameHaveBeenCalled = false
-        let addGameResponse;
-        const wrapper = mount(<GameForm addGame={(response) => {
-            addGameResponse=response
-            addGameHaveBeenCalled = true
-        }}/>);
+        const addGameMock = jest.fn();
+        const wrapper = mount(<GameForm addGame={addGameMock}/>);
         
         wrapper.find('form').simulate('submit', { preventDefault() {} });
         return new Promise((resolve) => setImmediate(resolve)).then(() => {
-            expect(addGameHaveBeenCalled).toBe(true);
-            expect(addGameResponse.id).toBe('1');
+            expect(addGameMock).toHaveBeenCalledWith({id: '1'})
         });
     });
 });

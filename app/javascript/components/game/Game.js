@@ -13,9 +13,15 @@ class Game extends Component{
         id: ''
       }
 
-      addGame = (form) => {        
+      addGame = (form) => { 
+        const initial_game =  {
+          board: '',
+          win:'',
+          draw:''
+        }      
         this.setState({
-            id: form.id
+            id: form.id,
+            messages: initial_game
           });
         }
 
@@ -45,7 +51,7 @@ class Game extends Component{
             <>
             
                 <div className='game_left'>
-                  <h3>Current Game ID: {this.state.id}</h3>
+                  <h3>Current Game ID: <span className="badge badge-success">{this.state.id}</span></h3>
                   <div className="container">
 
                     <div className="row">

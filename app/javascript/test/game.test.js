@@ -37,6 +37,7 @@ describe('Game', () => {
       wrapper.find('form').simulate('submit', { preventDefault () {} });
       return new Promise((resolve) => setImmediate(resolve)).then(() => {
         expect(wrapper.state('id')).toBe("1");
+        expect(wrapper.state('messages')).toEqual({ board: '', win: '', draw: '' });
       })
     });
 
@@ -49,5 +50,7 @@ describe('Game', () => {
         expect(wrapper.state('messages')).toEqual({ board: '', win: '', draw: '' });
       })
     });
+
+    
 
 });
