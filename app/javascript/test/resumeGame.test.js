@@ -4,9 +4,7 @@ import ResumeGame from '../components/ResumeGame';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
-
 import './setupTests';
-
 
 describe('Test resumeGame component', () => {
     
