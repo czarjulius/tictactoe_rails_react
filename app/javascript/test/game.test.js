@@ -3,8 +3,6 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { mount } from 'enzyme';
 
-import './setupTests';
-
 import Game from '../components/game/Game';
 
 describe('Game', () => {
@@ -21,7 +19,7 @@ describe('Game', () => {
     });
 
     test('create a new game with post method', () => {
-      mock.onPost('http://localhost:3000/games',  { opponent: "", current_player: '' }).reply(201, {
+      mock.onPost(`games`,  { opponent: "", current_player: '' }).reply(201, {
           id: "1",
       });
       wrapper.find('form').at(0).simulate('submit', { preventDefault () {} });
@@ -32,7 +30,7 @@ describe('Game', () => {
     });
 
     test('play game with a patch method will update the state with x move on position 8', () => {
-      mock.onPatch(`http://localhost:3000/games/${wrapper.state('id')}/move/8`).reply(200, {
+      mock.onPatch(`games/${wrapper.state('id')}/move/8`).reply(200, {
           messages: {"board": "", "draw": "", "win": ""}
       });      
       wrapper.find('li').at(8).simulate('click', { preventDefault() {} });

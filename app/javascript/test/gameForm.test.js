@@ -5,15 +5,16 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 
-import './setupTests';
+describe('GameForm', () => {
 
-
-describe('Test gameForm component', () => {
+  let mock;
+  beforeEach(() => {
+    mock = new MockAdapter(axios);
+  })
     
-    it('Test click event', () => {
-        let mock = new MockAdapter(axios);
+    it('create new game', () => {
         const data = {opponent: '',current_player: ''}
-        mock.onPost('http://localhost:3000/games', data).reply(201, {
+        mock.onPost(`games`, data).reply(201, {
             id: "1",
         });
 

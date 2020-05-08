@@ -4,13 +4,16 @@ import ResumeGame from '../components/ResumeGame';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
-import './setupTests';
-
-describe('Test resumeGame component', () => {
+describe('ResumeGame', () => {
     
-    it('Test on submit event', () => {
-        let mock = new MockAdapter(axios);
-        mock.onGet(`http://localhost:3000/games/6`).reply(200, {
+  let mock;
+  beforeEach(() => {
+    mock = new MockAdapter(axios);
+
+
+  })
+    it('resume game by submitting valid id', () => {
+        mock.onGet(`games/6`).reply(200, {
             id: '1'
         });
 
@@ -24,10 +27,9 @@ describe('Test resumeGame component', () => {
         });
     });
 
-    it('Test click event', () => {
-        let mock = new MockAdapter(axios);
+    it('resume the last game', () => {
         window.localStorage.setItem('gameId', 5);
-        mock.onGet('http://localhost:3000/games/5').reply(200, {
+        mock.onGet(`games/5`).reply(200, {
             id: "1",
         });
 

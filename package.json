@@ -2,7 +2,7 @@
   "name": "tictactoe_rails_react",
   "private": true,
   "scripts": {
-    "test": "jest",
+    "test": "jest --setupFiles ./app/javascript/test/setupTests.js",
     "test-watch": "jest --watch"
   },
   "jest": {

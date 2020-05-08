@@ -1,12 +1,9 @@
 import MockAdapter from 'axios-mock-adapter';
 import axios from 'axios';
-
 import GameAction from '../actions/gameActions';
 
-import './setupTests';
 
-
-describe('Test gameAction method', () => {
+describe('Game Action', () => {
     let mock = new MockAdapter(axios);
     const path = 'games';
     const url = `http://localhost:3000/${path}`;
