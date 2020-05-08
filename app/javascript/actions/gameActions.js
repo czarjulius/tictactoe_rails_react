@@ -1,7 +1,8 @@
 import axios from 'axios';
+import 'dotenv/config';
 
-    const  axiosInstance = ({path, method = 'post', data}) => {
-      return axios( {url:`http://localhost:3000/${path}`, method, data} )
+    const  axiosInstance = ({path, method = 'post', data}) => {      
+      return axios( {url:process.env.BASE_URL+path, method, data} )
         .then(res => {
             return res.data;
         }).catch(({ message, response }) => {

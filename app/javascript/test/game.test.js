@@ -20,21 +20,11 @@ describe('Game', () => {
       expect(wrapper.find("h1").text()).toContain("Tic-Tac-Toe");
     });
 
-    test('that a button with a new game is preseent', () => {
-      wrapper.find('button').simulate('submit');
-      expect(wrapper.find('button').text()).toBe('New Game');
-    });
-    
-    test('new game button to call submitHandler', () => {
-      wrapper.find('button').simulate('submit', { preventDefault () {} });
-      expect(wrapper.find('button').text()).toBe('New Game');
-    });
-
     test('create a new game with post method', () => {
       mock.onPost('http://localhost:3000/games',  { opponent: "", current_player: '' }).reply(201, {
           id: "1",
       });
-      wrapper.find('form').simulate('submit', { preventDefault () {} });
+      wrapper.find('form').at(0).simulate('submit', { preventDefault () {} });
       return new Promise((resolve) => setImmediate(resolve)).then(() => {
         expect(wrapper.state('id')).toBe("1");
         expect(wrapper.state('messages')).toEqual({ board: '', win: '', draw: '' });

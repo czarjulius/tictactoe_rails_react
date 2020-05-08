@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import GameForm from '../gameForm'
 import Cell from '../Cell'
+import ResumeGame from '../ResumeGame'
 import '../game/game.css'
 
 class Game extends Component{
@@ -23,6 +24,8 @@ class Game extends Component{
             id: form.id,
             messages: initial_game
           });
+          localStorage.setItem('gameId', form.id)
+
         }
 
         playGame = (output) => {  
@@ -32,6 +35,13 @@ class Game extends Component{
               messages: output
             });
         }
+      }
+        resumeGame = (game) => { 
+          this.setState({
+              messages: game.data.message,
+              id: game.data.id
+            });
+            localStorage.setItem('gameId', game.data.id)
       }
 
     render(){
@@ -51,15 +61,15 @@ class Game extends Component{
             <>
             
                 <div className='game_left'>
-                  <h3>Current Game ID: <span className="badge badge-success">{this.state.id}</span></h3>
                   <div className="container">
 
                     <div className="row">
-                      <div className="col-md-2">
+                      <div className="col-md-3">
                         <GameForm addGame={this.addGame}/>
                       </div>
                       
-                      <div className="col-md-8">
+                      <div className="col-md-6">
+                          <h3>Current Game ID: <span className="badge badge-success">{this.state.id}</span></h3>
                           <h1>Tic-Tac-Toe</h1>
                           <ul id="game">
                             {cells}
@@ -69,6 +79,9 @@ class Game extends Component{
                             <span className="game-over">{messages.message && messages.message.win}</span>
                             <span className="game-over">{messages.message && messages.message.draw}</span>
                         </div>
+                      </div>
+                      <div className="col-md-3">
+                        <ResumeGame resumeGame = {this.resumeGame}/>
                       </div>
                   </div>
 

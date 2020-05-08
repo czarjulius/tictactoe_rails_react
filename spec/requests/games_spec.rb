@@ -70,5 +70,23 @@ RSpec.describe 'Games Controller', type: :request do
       expect(response).to have_http_status(200)
       expect(JSON.parse(response.body)['message']).to eq(expected_result)
     end
+
+    it 'should return a game when a valid game id is provided' do
+      game = Game.create(opponent: 'computer', player: 'x', current_player: 'human', board: ['-', '-', 'x', '-', '-', 'x', 'o', '-', 'x'])
+
+      expected_result = {"board" => ["-", "-", "x", "-", "-", "x", "o", "-", "x"],"win" => "human won the game"}
+      get "/games/#{game.id}"
+
+      expect(response.content_type).to eq('application/json; charset=utf-8')
+      expect(response).to have_http_status(200)
+      expect(JSON.parse(response.body)['data']['message']).to eq(expected_result)
+    end
+    it 'should fail to return a game when an inalid game id is provided' do
+      Game.create(opponent: 'computer', player: 'x', current_player: 'human', board: ['-', '-', 'x', '-', '-', 'x', 'o', '-', 'x'])
+      get "/games/98765"
+
+      expect(response.content_type).to eq('application/json; charset=utf-8')
+      expect(response).to have_http_status(404)
+    end
   end
 end
