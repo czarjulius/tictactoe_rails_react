@@ -7,7 +7,6 @@ class GamesController < ApplicationController
 
   def create
     @new_game = Game.new(game_params)
-    @new_game.board = Array.new(9, "-")
 
     if @new_game.valid?
       @new_game.save
@@ -28,9 +27,9 @@ class GamesController < ApplicationController
   end
 
   def show
-    resume_game = Game.where(:id => params[:id]).first
-    if !resume_game.nil?
-      answer = UpdateGame.new.update_show_game(resume_game)
+    resume_game = Game.find_by(:id => params[:id])
+    if resume_game.present?
+      answer = ShowAssignValue.new.set_value(resume_game)
       render json: { data: { message: answer, id: resume_game.id } }, status: 200
     else
       render json: { message: "Game with Id: " + params[:id] + " is not found" }, status: 404

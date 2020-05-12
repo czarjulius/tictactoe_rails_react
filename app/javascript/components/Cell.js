@@ -16,10 +16,9 @@ class Cell extends Component {
   render() {
     return (
       <li
-        data-pos="0,0"
-        onClick={() => this.onPlayHandler()}
+        onClick={this.onPlayHandler}
         id="players"
-        className={`${this.props.endGame ? "disableCell" : ""}`}
+        className={`${this.props.endGame ? "disable-cell" : ""}`}
       >
         {this.props.message}
       </li>

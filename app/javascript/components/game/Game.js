@@ -14,7 +14,7 @@ class Game extends Component {
     id: "",
   };
 
-  addGame = (form) => {
+  addGame = (form, storage = localStorage) => {
     const initial_game = {
       board: "",
       win: "",
@@ -24,7 +24,7 @@ class Game extends Component {
       id: form.id,
       messages: initial_game,
     });
-    localStorage.setItem("gameId", form.id);
+    storage.setItem("gameId", form.id);
   };
 
   playGame = (output) => {
@@ -34,17 +34,24 @@ class Game extends Component {
       });
     }
   };
-  resumeGame = (game) => {
+  resumeGame = (game, storage = localStorage) => {
     this.setState({
       messages: { message: game.data.message },
       id: game.data.id,
     });
-    localStorage.setItem("gameId", game.data.id);
+    storage.setItem("gameId", game.data.id);
   };
 
   render() {
     const { messages } = this.state;
     const cells = [];
+    if (!messages.message) {
+      messages.message = {
+        win: "",
+        draw: "",
+        board: [],
+      };
+    }
     for (let index = 0; index < 9; index++) {
       cells.push(
         <Cell
@@ -52,11 +59,8 @@ class Game extends Component {
           id={this.state.id}
           playGame={this.playGame}
           position={index}
-          message={messages.message && messages.message.board[index]}
-          endGame={
-            (messages.message && messages.message.win) ||
-            (messages.message && messages.message.draw)
-          }
+          message={messages.message.board[index]}
+          endGame={messages.message.win || messages.message.draw}
         />
       );
     }
@@ -79,8 +83,7 @@ class Game extends Component {
 
                 <div id="game-messages">
                   <span className="game-over">
-                    {messages.message &&
-                      (messages.message.win || messages.message.draw)}
+                    {messages.message.win || messages.message.draw}
                   </span>
                 </div>
               </div>

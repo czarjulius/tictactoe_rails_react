@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 import "./game/game.css";
 import AxiosInstance from "../actions/gameActions";
@@ -25,7 +26,7 @@ class ResumeGame extends Component {
   };
 
   resumeLastGameHandler = () => {
-    const id = localStorage.getItem("gameId");
+    const id = this.props.storage.getItem("gameId");
     AxiosInstance({ path: `games/${id}`, method: "get" })
       .then((res) => {
         this.props.resumeGame(res);
@@ -52,16 +53,11 @@ class ResumeGame extends Component {
             Resume Game
           </button>
         </form>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
+
         <button
-          className="mr-4 resumeGame"
+          className="mt-5 mr-4 resumeGame"
           id="reset-game"
-          onClick={() => this.resumeLastGameHandler()}
+          onClick={this.resumeLastGameHandler}
         >
           Resume Last Game
         </button>
@@ -69,5 +65,9 @@ class ResumeGame extends Component {
     );
   }
 }
+
+ResumeGame.defaultProps = {
+  storage: localStorage,
+};
 
 export default ResumeGame;

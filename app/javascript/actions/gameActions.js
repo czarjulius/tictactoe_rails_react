@@ -1,5 +1,4 @@
 import axios from "axios";
-import "dotenv/config";
 
 const axiosInstance = ({ path, method = "post", data }) => {
   return axios({ url: path, method, data })
