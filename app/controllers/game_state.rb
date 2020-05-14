@@ -1,5 +1,5 @@
-class ShowAssignValue
-  def set_value(resume_game)
+class GameState
+  def current_state(resume_game)
     player = resume_game.player
     opponent = resume_game.opponent
     current_player = resume_game.current_player

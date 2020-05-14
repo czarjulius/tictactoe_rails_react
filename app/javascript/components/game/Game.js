@@ -14,7 +14,7 @@ class Game extends Component {
     id: "",
   };
 
-  addGame = (form, storage = localStorage) => {
+  addGame = (form) => {
     const initial_game = {
       board: "",
       win: "",
@@ -24,7 +24,7 @@ class Game extends Component {
       id: form.id,
       messages: initial_game,
     });
-    storage.setItem("gameId", form.id);
+    this.props.storage.setItem("gameId", form.id);
   };
 
   playGame = (output) => {
@@ -34,12 +34,14 @@ class Game extends Component {
       });
     }
   };
-  resumeGame = (game, storage = localStorage) => {
+  resumeGame = (game) => {
     this.setState({
       messages: { message: game.data.message },
       id: game.data.id,
     });
-    storage.setItem("gameId", game.data.id);
+    console.log('jjjjjjjjjjjjjjjjjj');
+    
+    this.props.storage.setItem("gameId", game.data.id);
   };
 
   render() {
@@ -97,5 +99,8 @@ class Game extends Component {
     );
   }
 }
+Game.defaultProps = {
+  storage: localStorage,
+};
 
 export default Game;

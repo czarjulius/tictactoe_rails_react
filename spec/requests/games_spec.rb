@@ -18,6 +18,8 @@ RSpec.describe "Games Controller", type: :request do
     end
   end
 
+  let(:json) { JSON.parse(response.body) }
+
   context "play_game" do
     it "should move to position 2 on the game board" do
       game = Game.create(opponent: "human", current_player: "player1", board: Array.new(9, "-"))
@@ -28,7 +30,7 @@ RSpec.describe "Games Controller", type: :request do
       expect(response.content_type).to eq("application/json; charset=utf-8")
       expect(response).to have_http_status(200)
 
-      expect(JSON.parse(response.body)).to eq(expected_result)
+      expect(json).to eq(expected_result)
     end
     it "should output player1 as the winner" do
       game = Game.create(opponent: "human", player: "x", current_player: "player1", board: ["-", "-", "x", "-", "-", "x", "o", "-", "x"])
@@ -38,7 +40,7 @@ RSpec.describe "Games Controller", type: :request do
 
       expect(response.content_type).to eq("application/json; charset=utf-8")
       expect(response).to have_http_status(200)
-      expect(JSON.parse(response.body)["message"]).to eq(expected_result)
+      expect(json["message"]).to eq(expected_result)
     end
     it "should end the game in a tie" do
       game = Game.create(opponent: "human", player: "o", current_player: "player1", board: ["o", "x", "o", "x", "o", "x", "x", "-", "x"])
@@ -48,7 +50,7 @@ RSpec.describe "Games Controller", type: :request do
 
       expect(response.content_type).to eq("application/json; charset=utf-8")
       expect(response).to have_http_status(200)
-      expect(JSON.parse(response.body)["message"]).to eq(expected_result)
+      expect(json["message"]).to eq(expected_result)
     end
     it "should end the game in a win by computer" do
       game = Game.create(opponent: "computer", player: "x", current_player: "computer", board: ["-", "-", "x", "-", "-", "x", "o", "-", "x"])
@@ -58,7 +60,7 @@ RSpec.describe "Games Controller", type: :request do
 
       expect(response.content_type).to eq("application/json; charset=utf-8")
       expect(response).to have_http_status(200)
-      expect(JSON.parse(response.body)["message"]).to eq(expected_result)
+      expect(json["message"]).to eq(expected_result)
     end
     it "should end the game in a win by human" do
       game = Game.create(opponent: "computer", player: "x", current_player: "human", board: ["-", "-", "x", "-", "-", "x", "o", "-", "x"])
@@ -68,7 +70,7 @@ RSpec.describe "Games Controller", type: :request do
 
       expect(response.content_type).to eq("application/json; charset=utf-8")
       expect(response).to have_http_status(200)
-      expect(JSON.parse(response.body)["message"]).to eq(expected_result)
+      expect(json["message"]).to eq(expected_result)
     end
     it "should  fail to end the game in a win by human" do
       game = Game.create(opponent: "computer", player: "o", current_player: "human", board: [
@@ -82,7 +84,7 @@ RSpec.describe "Games Controller", type: :request do
 
       expect(response.content_type).to eq("application/json; charset=utf-8")
       expect(response).to have_http_status(200)
-      expect(JSON.parse(response.body)["message"]).to eq(expected_result)
+      expect(json["message"]).to eq(expected_result)
     end
 
     it "should return a game when a valid game id is provided" do
@@ -93,7 +95,7 @@ RSpec.describe "Games Controller", type: :request do
 
       expect(response.content_type).to eq("application/json; charset=utf-8")
       expect(response).to have_http_status(200)
-      expect(JSON.parse(response.body)["data"]["message"]).to eq(expected_result)
+      expect(json["data"]["message"]).to eq(expected_result)
     end
     it "should fail to return a game when an inalid game id is provided" do
       Game.create(opponent: "computer", player: "x", current_player: "human", board: ["-", "-", "x", "-", "-", "x", "o", "-", "x"])

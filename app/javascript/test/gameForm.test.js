@@ -16,12 +16,17 @@ describe("GameForm", () => {
       id: "1",
     });
 
-    const addGameMock = jest.fn();
-    const wrapper = mount(<GameForm addGame={addGameMock} />);
+    const props = {
+      addGame: jest.fn(),
+    };
+
+    const wrapper = mount(<GameForm {...props} />);
 
     wrapper.find("form").simulate("submit", { preventDefault() {} });
     return new Promise((resolve) => setImmediate(resolve)).then(() => {
-      expect(addGameMock).toHaveBeenCalledWith({ id: "1" });
+      expect(wrapper.instance().props.addGame).toHaveBeenCalledWith({
+        id: "1",
+      });
       done();
     });
   });

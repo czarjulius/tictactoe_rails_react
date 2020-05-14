@@ -29,8 +29,8 @@ class GamesController < ApplicationController
   def show
     resume_game = Game.find_by(:id => params[:id])
     if resume_game.present?
-      answer = ShowAssignValue.new.set_value(resume_game)
-      render json: { data: { message: answer, id: resume_game.id } }, status: 200
+      game_status = GameState.new.current_state(resume_game)
+      render json: { data: { message: game_status, id: resume_game.id } }, status: 200
     else
       render json: { message: "Game with Id: " + params[:id] + " is not found" }, status: 404
     end

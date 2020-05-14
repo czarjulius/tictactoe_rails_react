@@ -14,13 +14,22 @@ describe("ResumeGame", () => {
       id: "1",
     });
 
-    const resumeGameMock = jest.fn();
-    const wrapper = mount(<ResumeGame resumeGame={resumeGameMock} />);
+    const fakeStorage = {
+      setItem: (key, value) => {
+        return ('gameId', 5);
+      },
+    };
+
+    const props = {
+      resumeGame: jest.fn(),
+      storage: fakeStorage,
+    };
+    const wrapper = mount(<ResumeGame {...props} />);
     wrapper.setState({ id: 6 });
 
     wrapper.find("form").simulate("submit", { preventDefault() {} });
     return new Promise((resolve) => setImmediate(resolve)).then(() => {
-      expect(resumeGameMock).toHaveBeenCalledWith({ id: "1" });
+      expect(wrapper.instance().props.resumeGame).toHaveBeenCalledWith({ id: "1" });
       done();
     });
   });

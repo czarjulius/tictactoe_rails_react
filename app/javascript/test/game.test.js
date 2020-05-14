@@ -9,7 +9,14 @@ describe("Game", () => {
   let wrapper;
   let mock;
   beforeEach(() => {
-    wrapper = mount(<Game />);
+    const fakeStorage = {
+      setItem: jest.fn(),
+    };
+
+    const props = {
+      storage: fakeStorage,
+    };
+    wrapper = mount(<Game {...props} />);
     mock = new MockAdapter(axios);
   });
 
@@ -23,6 +30,7 @@ describe("Game", () => {
       .reply(201, {
         id: "1",
       });
+
     wrapper
       .find("form")
       .at(0)
@@ -35,6 +43,10 @@ describe("Game", () => {
         draw: "",
         message: { win: "", draw: "", board: [] },
       });
+      expect(wrapper.instance().props.storage.setItem).toHaveBeenCalledWith(
+        "gameId", "1"
+      );
+
       done();
     });
   });
