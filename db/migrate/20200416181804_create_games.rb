@@ -6,7 +6,7 @@ class CreateGames < ActiveRecord::Migration[6.0]
       t.string :opponent
       t.string :player, default: 'x'
       t.string :current_player
-      t.text :board, array: true, default: '{}'
+      t.text :board, array: true, default: Array.new(9, "-")
       t.timestamps null: false
     end
   end

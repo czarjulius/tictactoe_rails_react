@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative 'moves_type'
+require_relative "moves_type"
 
 class GameMove
   def all_moves(game, opponent, current_player, position, current_game)
-    if opponent == 'human'
+    if opponent == Game::HUMAN
       game.move(position)
       current_game.current_player = TicTacToeGame::HumanHumanToggle.new.current_turn(current_player)
     else
