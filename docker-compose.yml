@@ -6,6 +6,16 @@ services:
       - "5432:5432"
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
+  web:
     environment:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "psql"
+      POSTGRES_HOST: "db"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bundle exec rails server -b 0.0.0.0
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
