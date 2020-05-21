@@ -27,4 +27,4 @@ test:
 
 production:
   <<: *default
-  database: tictactoe
+  url: <%= URI.parse(ENV.fetch('DATABASE_URL', '')) %>

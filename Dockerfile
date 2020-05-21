@@ -19,3 +19,4 @@ COPY . .
 
 RUN gem install bundler && bundle install
 RUN yarn install
+CMD bundle exec rails server -b 0.0.0.0
