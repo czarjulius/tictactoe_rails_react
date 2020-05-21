@@ -9,5 +9,5 @@ build:
     web: Dockerfile
 release:
   command:
-    - rake db:migrate
+    - bundle exec rake db:migrate
   image: web
