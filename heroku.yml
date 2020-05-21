@@ -3,9 +3,11 @@ setup:
     - plan: heroku-postgresql
       as: DATABASE
 build:
+  config:
+    RAILS_ENV: production
   docker:
     web: Dockerfile
 release:
   command:
-    - RAILS_ENV=production rake db:migrate
+    - rake db:migrate
   image: web
