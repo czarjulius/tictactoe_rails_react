@@ -1,0 +1,13 @@
+setup:
+  addons:
+    - plan: heroku-postgresql
+      as: DATABASE
+build:
+  config:
+    RAILS_ENV: production
+  docker:
+    web: Dockerfile
+release:
+  command:
+    - bundle exec rake db:migrate
+  image: web
