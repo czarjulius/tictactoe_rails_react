@@ -9,6 +9,7 @@ services:
     environment:
       POSTGRES_USER: "postgres"
       POSTGRES_HOST: "db"
+      POSTGRES_PASSWORD: "psql"
   web:
     environment:
       POSTGRES_USER: "postgres"
@@ -17,7 +18,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: bundle exec rails server -b 0.0.0.0
+    command: ["./wait-for-postgres.sh", "sudo docker-compose run web bundle exec rake db:create", "docker-compose run web bundle exec rake db:migrate", "bundle exec rails server -b 0.0.0.0"]
     ports:
       - "80:3000"
     depends_on:
