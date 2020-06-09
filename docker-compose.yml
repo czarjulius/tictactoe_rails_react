@@ -18,7 +18,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: ["./wait-for-postgres.sh", "sudo docker-compose run web bundle exec rake db:create", "docker-compose run web bundle exec rake db:migrate", "bundle exec rails server -b 0.0.0.0"]
+    command: bash -c "./wait-for-postgres.sh && bundle exec rake db:create && bundle exec rake db:migrate && bundle exec rails server -b 0.0.0.0"
     ports:
       - "80:3000"
     depends_on:

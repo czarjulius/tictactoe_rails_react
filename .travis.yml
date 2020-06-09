@@ -22,3 +22,8 @@ matrix:
     script:
       - npm install
       - npm test
+    deploy:
+      provider: script
+      script: bash ./deploy_to_aws.sh
+      on:
+        branch: develop

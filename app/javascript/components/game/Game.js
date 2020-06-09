@@ -39,7 +39,6 @@ class Game extends Component {
       messages: { message: game.data.message },
       id: game.data.id,
     });
-    console.log('jjjjjjjjjjjjjjjjjj');
     
     this.props.storage.setItem("gameId", game.data.id);
   };
