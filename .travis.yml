@@ -14,6 +14,7 @@ matrix:
       - bundle exec rake spec
 
     language: node_js
+
     node_js:
       - "stable"
     cache:
@@ -27,3 +28,7 @@ matrix:
       script: bash ./deploy_to_aws.sh
       on:
         branch: develop
+    addons:
+      ssh_known_hosts:
+        - ec2-52-38-40-75.us-west-2.compute.amazonaws.com
+        - 52.38.40.75
