@@ -1,27 +1,14 @@
-matrix:
-  include:
-    language: ruby
-    ruby:
-      - "2.6.3"
-    services:
-      - postgresql
-    before_script:
-      - psql -c 'create database tictactoe_test;' -U postgres
-    script:
-      - bundle exec rake db:migrate RAILS_ENV=test
-      - bundle exec rake spec
-
-    language: node_js
-    node_js:
-      - "stable"
-    cache:
-      directories:
-      - node_modules
-    script:
-      - npm install
-      - npm test
-    deploy:
-      provider: script
-      script: bash ./deploy_to_aws.sh
-      on:
-        branch: develop
+language: node_js
+node_js:
+  - "stable"
+cache:
+  directories:
+    - node_modules
+script:
+  - yarn install
+  - yarn test
+deploy:
+  provider: script
+  script: bash ./deploy_to_aws.sh
+  on:
+    branch: develop

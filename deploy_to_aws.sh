@@ -1,7 +1,9 @@
  #!/bin/bash
  
 echo 'Starting to Deploy...'
-ssh -i "tictactoeaws.pem" -o StrictHostKeyChecking=no ubuntu@52.38.40.75 " sudo docker image prune -f 
+chmod 400 "tictactoeaws.pem"
+
+ssh -o StrictHostKeyChecking=no ubuntu@52.38.40.75 -i "tictactoeaws.pem" " sudo docker image prune -f 
         cd tictactoe_rails_react 
         sudo docker-compose down
         git fetch origin
