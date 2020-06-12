@@ -1,17 +1,10 @@
-language: node_js
-node_js:
-  - "stable"
-cache:
-  directories:
-    - node_modules
+language: ruby
+ruby:
+  - "2.6.3"
+services:
+  - postgresql
+before_script:
+  - psql -c 'create database tictactoe_test;' -U postgres
 script:
-  - yarn install
-  - yarn test
-deploy:
-  access_key_id: $AWS_ACCESS_KEY_ID
-  secret_access_key:
-    secure: $AWS_SECRET_KEY
-  provider: script
-  script: bash ./deploy_to_aws.sh
-  on:
-    branch: develop
+  - bundle exec rake db:migrate RAILS_ENV=test
+  - bundle exec rake spec

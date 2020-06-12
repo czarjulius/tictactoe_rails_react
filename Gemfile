@@ -37,7 +37,7 @@ group :production do
   gem 'rails_12factor'
 end
 group :development, :test do
-  gem 'sqlite3', '~> 1.4'
+  # gem 'sqlite3', '~> 1.4'
   # Use sqlite3 as the database for Active Record
   # Call 'byebug' anywhere in the code to stop execution and get a debugger
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
