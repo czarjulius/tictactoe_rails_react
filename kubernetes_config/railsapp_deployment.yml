@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tictactoe-deployment
+  labels:
+    app: tictactoe
+    tier: app
+spec:
+  replicas: 2
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: tictactoe
+      tier: app
+  template:
+    metadata:
+      labels:
+        app: rubytags
+        tier: app
+    spec:
+      imagePullSecrets:
+        - name: docker-registry
+      containers:
+      - name: tictactoe
+        image: littlelines/tictactoe
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+        env:
+        - name: RAILS_LOG_TO_STDOUT
+          value: 'true'
+        - name: SECRET_KEY_BASE
+          value: '$SECRET_KEY_BASE'
+        - name: RAILS_ENV
+          value: '$RAILS_ENV'
+        - name: DATABASE_USERNAME
+          value: 'postgres'
+        - name: DATABASE_PASSWORD
+          value: 'psql'
+        - name: DATABASE_HOST
+          value: 'localhost'
+        - name: DATABASE_PORT
+          value: '5432'
