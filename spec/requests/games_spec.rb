@@ -20,7 +20,7 @@ RSpec.describe "Games Controller", type: :request do
 
   let(:json) { JSON.parse(response.body) }
 
-  context "play_game" do
+  context "play_game ..." do
     it "should move to position 2 on the game board" do
       game = Game.create(opponent: "human", current_player: "player1", board: Array.new(9, "-"))
 
