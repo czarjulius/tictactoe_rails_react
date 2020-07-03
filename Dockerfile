@@ -18,6 +18,7 @@ COPY yarn.lock ./
 COPY Gemfile* ./
 COPY package.json ./
 COPY . .
+RUN apt install -y build-essential patch ruby-dev zlib1g-dev liblzma-dev
 
 RUN gem install bundler && bundle install
 RUN bundle update rake
