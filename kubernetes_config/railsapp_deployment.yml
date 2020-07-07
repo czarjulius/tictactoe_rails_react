@@ -27,7 +27,8 @@ spec:
         - name: docker-registry
       containers:
       - name: tictactoe
-        image: littlelines/tictactoe
+        image: juliusngwu/tictactoe:firsttry
+        args: rails s -p 3000 -b 0.0.0.0
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
