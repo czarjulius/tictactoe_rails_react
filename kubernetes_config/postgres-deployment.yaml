@@ -23,8 +23,8 @@ spec:
                 name: postgres-config
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
-              name: postgredb
+              name: tictactoe
       volumes:
-        - name: postgredb
+        - name: tictactoe
           persistentVolumeClaim:
             claimName: postgres-pv-claim

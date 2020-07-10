@@ -1,0 +1,44 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: rails-deployment
+spec:
+  replicas: 1
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1  
+  selector:
+    matchLabels: 
+      app: tictactoe
+      tier: app
+  template:
+    metadata:
+      name: rails
+      labels:
+        app: tictactoe
+        tier: app
+    spec:
+      containers:
+      - name: rails
+        image: juliusngwu/tictactoe:firsttry
+        args: ["rake assets:precompile && rails s -p 3000 -b 0.0.0.0"]
+        env:
+        - name: RAILS_LOG_TO_STDOUT
+          value: "true"
+        - name: RAILS_SERVE_STATIC_FILES
+          value: "true"
+        - name: DATABASE_NAME
+          value: "tictactoe"
+        - name: DATABASE_PORT
+          value: "5432"
+        - name: DATABASE_URL
+          value: "postgres"
+        - name: DATABASE_USER
+          value: "postgres"
+        - name: DATABASE_PASSWORD
+          value: "psql"
+        ports:
+          - containerPort: 3000
