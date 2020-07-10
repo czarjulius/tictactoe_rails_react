@@ -20,7 +20,7 @@ spec:
   template:
     metadata:
       labels:
-        app: rubytags
+        app: tictactoe
         tier: app
     spec:
       imagePullSecrets:
@@ -28,17 +28,13 @@ spec:
       containers:
       - name: tictactoe
         image: juliusngwu/tictactoe:firsttry
-        args: rails s -p 3000 -b 0.0.0.0
+        args: ["rails s -p 3000 -b 0.0.0.0"]
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
         env:
         - name: RAILS_LOG_TO_STDOUT
           value: 'true'
-        - name: SECRET_KEY_BASE
-          value: '$SECRET_KEY_BASE'
-        - name: RAILS_ENV
-          value: '$RAILS_ENV'
         - name: DATABASE_USERNAME
           value: 'postgres'
         - name: DATABASE_PASSWORD
@@ -46,4 +42,4 @@ spec:
         - name: DATABASE_HOST
           value: 'localhost'
         - name: DATABASE_PORT
-          value: '5432'
+          value: 30788
